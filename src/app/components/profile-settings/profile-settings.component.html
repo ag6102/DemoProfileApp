@@ -1,0 +1,28 @@
+<div class="profile-container">
+    <div>
+        <h1>{{ "demo.title" | translate }}​</h1>
+        <div>
+            <p><b>​Username:</b> {{ userData?.username }}​</p>
+            <p><b>Email:</b> {{ userData?.email }}​</p>
+        </div>
+        <div>
+            <div class="input-container">
+                <label>​First Name:​</label>
+                <input [disabled]="!userData" type="text" [ngModel]="userData?.firstName" (ngModelChange)="userData.firstName = $event; inputChanged()" />
+            </div>
+            <div class="input-container">
+                <label>Last Name:​</label>
+                <input [disabled]="!userData" type="text" [ngModel]="userData?.lastName" (ngModelChange)="userData.lastName = $event; inputChanged()" />
+            </div>
+            <div class="input-container">
+                <input [disabled]="!userData" type="button" (click)="updateUserInfo()" value="Save" />
+            </div>
+        </div>
+    </div>
+    <div class="message-container">
+        <p *ngIf="!userData">​Loading profile...​</p>
+        <p *ngIf="isUpdating">​Saving profile...​</p>
+        <p class="error">{{ errorMsg }}</p>
+    </div>
+    <!-- <p class="error" *ngIf="emailUpdateFail">Error on email generation!</p> -->
+</div>
